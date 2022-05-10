@@ -30,8 +30,9 @@ export default function Game() {
       <div id="gameTextBox">
         <div id="gameText">
           <span className="completed">{completed}</span>
-          <span id="cursor" style={{color:"red"}}>|</span>
-          <span className="uncompleted">{uncompleted}</span>
+          <span className="uncompleted">{uncompleted}
+            <div id="cursor">|</div>
+          </span>
         </div>
       </div>
       <input onChange={handleEntry} value={userEntry} />

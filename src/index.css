@@ -17,7 +17,7 @@ code {
   width: 500px;
   height: 300px;
   background-color: black;
-  overflow: hid;
+  overflow: hidden;
 }
 
 #gameText {
@@ -40,8 +40,21 @@ code {
 .uncompleted {
   color: white;
   text-decoration: underline;
+  position: relative;
 }
 
 #cursor {
-  width: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -2px;
+  animation: cursorBlink linear .5s infinite alternate;
+}
+
+@keyframes cursorBlink {
+  from {
+    color:red;
+  } to {
+    color:rgb(62, 3, 3);
+  }
 }
