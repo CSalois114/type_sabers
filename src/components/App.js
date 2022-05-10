@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import Leaderboard from "./Leaderboard";
 import Game from "./Game";
-import MiniLeaderboard from "./MiniLeaderboard";
+
 
 export default function App() {
   return (
@@ -14,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/game" element={<Game />}/>
         <Route path="/leaderboard" element={<Leaderboard />}/>
+        
       </Routes>
     </div>
   );

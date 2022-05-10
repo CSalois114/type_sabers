@@ -3,11 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 
 export default function NavBar() {
-  const styleBar = {
-    color: "white",
-    font: "Droid Sans",
-    background: "black",
-  }
 
   return (
     <div className='navbar'>
