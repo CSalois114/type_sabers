@@ -5,6 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: black;
+  color: #FFE81F;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5px 25px 50px;
+  height: 100px;
+  font-size: larger;
+}
+
+.SWLogo {
+  max-width: 50vw;
+  height: auto;
 }
 
 code {
@@ -17,10 +33,12 @@ code {
 }
 
 #gameTextBox {
-  width: 400px;
-  height: 640px;
+  width: 500px;
+  height: 600px;
   background-color: black;
   overflow: hidden;
+  box-shadow: 0 0 10pc white;
+  border-radius: 40px;
 }
 
 .title {
@@ -41,7 +59,7 @@ code {
 }
 
 .completed {
-  color: gold;
+  color: #FFE81F;
 }
 
 .uncompleted {
