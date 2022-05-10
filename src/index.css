@@ -10,14 +10,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} 
+
+#gameText span {
+  font-size: 23px;
 }
 
-
 #gameTextBox {
-  width: 500px;
-  height: 300px;
+  width: 400px;
+  height: 640px;
   background-color: black;
   overflow: hidden;
+}
+
+.title {
+  text-align: center;
 }
 
 #gameText {
@@ -39,7 +46,7 @@ code {
 
 .uncompleted {
   color: white;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   position: relative;
 }
 
