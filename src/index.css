@@ -12,11 +12,24 @@ code {
     monospace;
 }
 
-#game {
+
+#gameTextBox {
   width: 500px;
   height: 300px;
-  border: 3px solid black;
   background-color: black;
+}
+
+#gameText {
+  padding-top: 0px;
+  animation: textCrawl 100s linear 1;
+}
+
+@keyframes textCrawl {
+  from{
+    padding-top: 300px;
+  } to {
+    padding-top: 0px;
+  }
 }
 
 .completed {

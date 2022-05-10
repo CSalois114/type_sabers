@@ -27,12 +27,14 @@ export default function Game() {
 
   return (
     <div id="game">
-      <p>
-        <span className="completed">{completed}</span>
-        <span className="uncompleted">{uncompleted}</span>
-      </p>
+      <div id="gameTextBox">
+        <div id="gameText">
+          <span className="completed">{completed}</span>
+          <span className="uncompleted">{uncompleted}</span>
+        </div>
+      </div>
       <input onChange={handleEntry} value={userEntry} />
-      <span style={{color:"white"}}> Total Errors: {errors}</span>
+      <span> Total Errors: {errors}</span>
     </div>
   );
 }
