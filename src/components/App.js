@@ -1,4 +1,5 @@
 import React from "react"
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import Leaderboard from "./Leaderboard";
@@ -9,7 +10,11 @@ export default function App() {
   return (
     <div>
       <NavBar />
-      <Game />
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="/game" element={<Game />}/>
+        <Route path="/leaderboard" element={<Leaderboard />}/>
+      </Routes>
     </div>
   );
 }
