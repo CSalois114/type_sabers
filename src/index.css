@@ -45,16 +45,20 @@ code {
   text-align: center;
 }
 
+.over {
+  padding-top: 280px;
+}
+
 #gameText {
-  padding-top: 0px;
+  margin-top: -500px;
   animation: textCrawl 100s linear 1;
 }
 
 @keyframes textCrawl {
   from{
-    padding-top: 530px;
+    margin-top: 530px;
   } to {
-    padding-top: 0px;
+    margin-top: -500px;
   }
 }
 
@@ -64,7 +68,6 @@ code {
 
 .uncompleted {
   color: white;
-  /* text-decoration: underline; */
   position: relative;
 }
 
