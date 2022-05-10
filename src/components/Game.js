@@ -4,6 +4,7 @@ export default function Game() {
   const [gameText, setGameText] = useState("");
   const [userEntry, setUserEntry] = useState("");
   const [textIndex, setTextIndex] = useState(0);
+  const [errors, setErrors] = useState(0);
   console.log(textIndex, gameText.charAt(textIndex))
 
   const completed = gameText.slice(0, textIndex);
@@ -19,6 +20,8 @@ export default function Game() {
     if(e.target.value.slice(-1) === gameText.charAt(textIndex)){
       setUserEntry(gameText.charAt(textIndex) === " " ? "" : e.target.value)
       setTextIndex(textIndex + 1)  
+    } else {
+      setErrors(errors + 1)
     }
   }
 
@@ -29,6 +32,7 @@ export default function Game() {
         <span className="uncompleted">{uncompleted}</span>
       </p>
       <input onChange={handleEntry} value={userEntry} />
+      <span style={{color:"white"}}> Total Errors: {errors}</span>
     </div>
   );
 }
