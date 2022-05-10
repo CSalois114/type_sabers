@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 5px 25px 50px;
+  margin: 5px 12px 50px 12px;
   height: 100px;
   font-size: larger;
 }
@@ -33,16 +33,13 @@ code {
 }
 
 #gameTextBox {
-  width: 500px;
+  margin: auto;
+  width: 375px;
   height: 600px;
   background-color: black;
   overflow: hidden;
   box-shadow: 0 0 10pc white;
-  border-radius: 40px;
-}
-
-.title {
-  text-align: center;
+  border-radius: 10px;
 }
 
 .over {
@@ -85,4 +82,9 @@ code {
   } to {
     color:rgb(62, 3, 3);
   }
+}
+
+#appBody{
+  width: 100%;
+  text-align: center;
 }

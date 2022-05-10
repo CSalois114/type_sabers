@@ -10,12 +10,14 @@ export default function App() {
   return (
     <div>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/game" element={<Game />}/>
-        <Route path="/leaderboard" element={<Leaderboard />}/>
-        
-      </Routes>
+      <div id="appBody">
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/game" element={<Game />}/>
+          <Route path="/leaderboard" element={<Leaderboard />}/>
+          
+        </Routes>
+      </div>
     </div>
   );
 }
