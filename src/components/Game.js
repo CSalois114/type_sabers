@@ -30,6 +30,7 @@ export default function Game() {
       <div id="gameTextBox">
         <div id="gameText">
           <span className="completed">{completed}</span>
+          <span id="cursor" style={{color:"red"}}>|</span>
           <span className="uncompleted">{uncompleted}</span>
         </div>
       </div>

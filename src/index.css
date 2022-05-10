@@ -40,3 +40,7 @@ code {
   color: white;
   text-decoration: underline;
 }
+
+#cursor {
+  width: 0px;
+}
