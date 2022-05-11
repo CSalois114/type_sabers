@@ -38,13 +38,13 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
     if(!isGameOver) {
       tickRate = setInterval(() => {
         if(checkIsGameOver()){
-
-          finalTime.current = secondsSinceStart();
           clearInterval(tickRate);
           setIsGameOver(true);
         }
       }, 500);
     }
+
+    finalTime.current = secondsSinceStart();
     
     return(() => {
       clearInterval(tickRate)
@@ -52,6 +52,7 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
   }, [isGameOver, gameObj])
 
   const handleEntry = (e) => {
+    if(isGameOver) return setUserEntry("");
     if(e.target.value.slice(-1) === gameObj.text.charAt(textIndex)){
       setUserEntry(gameObj.text.charAt(textIndex) === " " ? "" : e.target.value)
       index.current = textIndex + 1  
