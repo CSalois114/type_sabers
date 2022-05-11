@@ -50,6 +50,7 @@ export default function Game({ episodes }) {
     }
 
     const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
+    song.volume = .5;
     song.play()
 
     return(() => {
