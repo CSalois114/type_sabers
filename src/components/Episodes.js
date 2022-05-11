@@ -14,8 +14,7 @@ export default function Episodes({ episodes }) {
       <h1
         key={episode.level}
         style={episodeStyles}
-        onClick={() => navigate(`/episodes/${episode.level}`)}
-      >
+        onClick={() => navigate(`/episodes/${episode.level}`)}>
         {episode.episode}
       </h1>
     );
