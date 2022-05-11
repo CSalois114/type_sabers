@@ -9,7 +9,7 @@ export default function ScoreCard({submitArr}) {
     accuracy: submitArr[1],
   });
   
-  console.log(submitArr)
+  const {score, wpm, accuracy} = formData;
   
   const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ export default function ScoreCard({submitArr}) {
       ...formData,
       [key]:value,
     })
-    console.log(formData)
   }
 
   const handleSubmit = (e) => {
@@ -39,18 +38,40 @@ export default function ScoreCard({submitArr}) {
 
   return (
     <div>
-      <h1 id='swFont' style={{"color": '#FFE81F'}}>Battle Summary</h1>
+      <h1 id='swFont' 
+      style={{
+        "color": '#FFE81F', 
+        "font-size": 'xxx-large'
+      }}>Battle Summary</h1>
+      <table style={{
+        "border": 'none'}}>
+        <thead>
+          <tr>
+            <th style={{
+        "border": 'none',
+        "font-size": 'xx-large'}}>Score: {score}</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th style={{
+        "border": 'none',
+        "font-size": 'large'}}> WPM: {wpm}</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th style={{
+        "border": 'none',
+        "font-size": 'large'}}> Accuracy: {accuracy}</th>
+          </tr>
+        </thead>
+      </table>
       <form onSubmit={handleSubmit}>
         <label>
-          <input style={{"height": '20px'}} type="text" placeholder="Enter Name..." name="name" onChange={handleChange} />
+          <input style={{"height": '20px'}} type="text" placeholder="Enter Name..." name="name"  onChange={handleChange} />
         </label>
         <input className="button" type="submit" value="Submit"  />
-        <br />
-        <label>Accuracy: {formData.accuracy}</label>
-        <br />
-        <label>WPM: {formData.wpm}</label>
-        <br />
-        <label>Score: {formData.score}</label>
       </form>
     </div>
   )
