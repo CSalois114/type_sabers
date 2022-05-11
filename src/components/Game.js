@@ -1,39 +1,44 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Game({gameObj, setGameObj, level, setSubmitArr, submitArr}) {
+export default function Game({ episodes }) {
   const [isGameOver, setIsGameOver] = useState(false);
   const [userEntry, setUserEntry]   = useState("");
   const [errors, setErrors]         = useState(0);
-
+  const [gameObj, setGameObj]       = useState({
+    level: "",
+    episode: "",
+    title: "",
+    text: "",
+  });
+  const level = useParams().level - 1;
   const navigate = useNavigate();
- 
+  
   const startTime = useRef(new Date());
   
   const index = useRef(0);
   const textIndex = index.current
-
+  
   const cursor = useRef();
   const gameBox = useRef();
   const checkIsGameOver = () => (
     cursor.current.getBoundingClientRect().top <
     gameBox.current.getBoundingClientRect().top
   );
-
+  
   const completed = gameObj.text.slice(0, textIndex);
   const uncompleted = gameObj.text.slice(textIndex);
-
+  
   useEffect(() => {
-    fetch("http://localhost:8001/gameTexts")
+    if(episodes[1]) {
+      setGameObj(episodes[parseInt(level)]);
+    } else {
+    fetch(`http://localhost:8001/gameTexts`)
       .then((res) => res.json())
-      .then((data) => setGameObj(data[level]));
-  }, []);
+      .then(data => setGameObj(data[level]));
+    }
+    console.log("only once")
 
-  const finalTime = useRef()
-  const secondsSinceStart = () => 
-    (new Date().getTime() - startTime.current.getTime()) / 1000;
-
-  useEffect(() => {
     let tickRate
     if(!isGameOver) {
       tickRate = setInterval(() => {
@@ -45,11 +50,14 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
       }, 500);
     }
 
-    
     return(() => {
       clearInterval(tickRate)
     });
-  }, [isGameOver, gameObj])
+  }, []);
+
+  const finalTime = useRef()
+  const secondsSinceStart = () => 
+    (new Date().getTime() - startTime.current.getTime()) / 1000;
 
   const handleEntry = (e) => {
     if(isGameOver) return setUserEntry("");
@@ -73,8 +81,13 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
     Math.round((wordsPerMin() * 100)+(charsCompleted()*(percentAccuracy()/100)-(errors*2)));
 
   const handleSubmission = () => {
-    setSubmitArr([Math.round(wordsPerMin()), Math.round(percentAccuracy()), finalScore()]);
-    navigate("/scorecard/new");
+    
+    const score = {
+      wpm: Math.round(wordsPerMin()),
+      accuracy: Math.round(percentAccuracy()),
+      finalScore: finalScore()
+    };
+    navigate(`/scorecard/new/${JSON.stringify(score)}`);
   };
 
   const display = () => {

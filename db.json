@@ -69,6 +69,13 @@
       "wpm": 68,
       "accuracy": 75,
       "id": 10
+    },
+    {
+      "name": "test",
+      "score": 3920,
+      "wpm": 37,
+      "accuracy": 92,
+      "id": 11
     }
   ],
   "gameTexts": [

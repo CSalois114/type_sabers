@@ -2,12 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Home({setLevel, level}) {
+export default function Home() {
   const navigate = useNavigate(); 
   
   const handleClick = () => {
-    setLevel(0);
-    navigate(`/episodes/${level}`);
+    navigate(`/episodes/1`);
   };
 
   return (

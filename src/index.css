@@ -59,7 +59,7 @@ code {
 
 #gameText {
   margin-top: -500px;
-  animation: textCrawl 1s linear 1;
+  animation: textCrawl 100s linear 1;
 }
 
 @keyframes textCrawl {

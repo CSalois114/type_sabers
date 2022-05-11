@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function ScoreCard({submitArr}) {
+export default function ScoreCard() {
+  const scoreData = (JSON.parse(useParams().score))
   const [formData, setFormData] = useState({
     name: "Unknown Jedi",
-    score: submitArr[2],
-    wpm: submitArr[0],
-    accuracy: submitArr[1],
+    score: scoreData.finalScore,
+    wpm: scoreData.wpm,
+    accuracy: scoreData.accuracy,
   });
-  
+
   const {score, wpm, accuracy} = formData;
   
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function ScoreCard({submitArr}) {
       <h1 id='swFont' 
       style={{
         "color": '#FFE81F', 
-        "font-size": 'xxx-large'
+        "fontSize": 'xxx-large'
       }}>Battle Summary</h1>
       <table style={{
         "border": 'none'}}>
@@ -49,21 +50,21 @@ export default function ScoreCard({submitArr}) {
           <tr>
             <th style={{
         "border": 'none',
-        "font-size": 'xx-large'}}>Score: {score}</th>
+        "fontSize": 'xx-large'}}>Score: {score}</th>
           </tr>
         </thead>
         <thead>
           <tr>
             <th style={{
         "border": 'none',
-        "font-size": 'large'}}> WPM: {wpm}</th>
+        "fontSize": 'large'}}> WPM: {wpm}</th>
           </tr>
         </thead>
         <thead>
           <tr>
             <th style={{
         "border": 'none',
-        "font-size": 'large'}}> Accuracy: {accuracy}</th>
+        "fontSize": 'large'}}> Accuracy: {accuracy}</th>
           </tr>
         </thead>
       </table>
