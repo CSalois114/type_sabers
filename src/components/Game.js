@@ -61,20 +61,21 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
     }
   }
 
-    
+  const charsCompleted = () => completed.split("").length;
+
   const wordsPerMin = () => 
     completed ? completed.split(" ").length / (finalTime.current / 60) : 0;
 
   const percentAccuracy = () => 
-    completed ? completed.split("").length / (completed.split("").length + errors) * 100 : 100;
+    completed ? charsCompleted() / (charsCompleted() + errors) * 100 : 100;
 
-  const finalScore = Math.round((wordsPerMin() * 100)+(completed*(percentAccuracy()/100)-(errors*2)));
+  const finalScore = () =>
+    Math.round((wordsPerMin() * 100)+(charsCompleted()*(percentAccuracy()/100)-(errors*2)));
 
   const handleSubmission = () => {
-    setSubmitArr([Math.round(wordsPerMin()), Math.round(percentAccuracy()), finalScore]);
+    setSubmitArr([Math.round(wordsPerMin()), Math.round(percentAccuracy()), finalScore()]);
     navigate("/scorecard");
   };
-  console.log(submitArr)
 
   const display = () => {
     if(isGameOver){
