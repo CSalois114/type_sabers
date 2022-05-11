@@ -21,7 +21,6 @@ export default function Episodes({setLevel}) {
     "color": "#FFE81F",
     "cursor": "pointer",
     "font-family": "Franlin Gothic",
-    "font-family": "sans-serif",
   };
 
   const renderEpisodes = episodes.map(e=> {return <h1 key={e.level} style={episodeStyles} onClick={()=> handleClick(e.level)}>{e.episode}</h1>});
