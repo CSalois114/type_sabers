@@ -1,15 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function Game() {
+export default function Game({gameObj, setGameObj,level}) {
   const [isGameOver, setIsGameOver] = useState(false);
-  const [level, setLevel]           = useState(0);
   const [userEntry, setUserEntry]   = useState("");
   const [errors, setErrors]         = useState(0);
-  const [gameObj, setGameObj]       = useState({
-    level: "",
-    title: "",
-    text: ""
-  });
+ 
 
   const startTime = useRef(new Date());
   
@@ -31,6 +26,7 @@ export default function Game() {
       .then((res) => res.json())
       .then((data) => setGameObj(data[level]));
   }, []);
+  console.log(gameObj)
 
   useEffect(() => {
     let tickRate
@@ -80,7 +76,7 @@ export default function Game() {
     } else {
        return (
         <div id="gameText">
-          <h3 className="completed title">{gameObj.level}</h3>
+          <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
           <span className="uncompleted">{uncompleted}
