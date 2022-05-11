@@ -17,7 +17,6 @@ export default function App() {
     title: "",
     text: ""
   });
-  console.log(submitArr)
 
 
   return (
@@ -32,7 +31,7 @@ export default function App() {
           <Route path="/episodes/:level" element={<Game 
             gameObj={gameObj} setGameObj={setGameObj}
             level={level} setSubmitArr={setSubmitArr} submitArr={submitArr} />}/>
-          <Route path="/scorecard" element={<ScoreCard submitArr={submitArr}/>} />
+          <Route path="/scorecard/new" element={<ScoreCard submitArr={submitArr}/>} />
           <Route path="/leaderboard" element={<Leaderboard />}/>
         </Routes>
       </div>
