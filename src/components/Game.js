@@ -29,12 +29,17 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
       .then((data) => setGameObj(data[level]));
   }, []);
 
+  const finalTime = useRef()
+  const secondsSinceStart = () => 
+    (new Date().getTime() - startTime.current.getTime()) / 1000;
 
   useEffect(() => {
     let tickRate
     if(!isGameOver) {
       tickRate = setInterval(() => {
         if(checkIsGameOver()){
+
+          finalTime.current = secondsSinceStart();
           clearInterval(tickRate);
           setIsGameOver(true);
         }
@@ -55,11 +60,9 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
     }
   }
 
-  const secondsSinceStart = () => 
-    (new Date().getTime() - startTime.current.getTime()) / 1000;
     
   const wordsPerMin = () => 
-    completed ? completed.split(" ").length / (secondsSinceStart() / 60) : 0;
+    completed ? completed.split(" ").length / (finalTime.current / 60) : 0;
 
   const percentAccuracy = () => 
     completed ? completed.split("").length / (completed.split("").length + errors) * 100 : 100;
@@ -77,7 +80,7 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
        return (
          <div>
           <h1 className="completed title over">Game Over</h1>
-          <h4 className="completed title">{Math.round(secondsSinceStart())} Seconds</h4>
+          <h4 className="completed title">{Math.round(finalTime.current)} Seconds</h4>
           <h4 className="completed title">WPM {Math.round(wordsPerMin())}</h4>
           <h4 className="completed title">Accuracy {Math.round(percentAccuracy())}%</h4> 
           <button className="button" onClick={handleSubmission}>Submit Score</button>
@@ -103,7 +106,7 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
         {display()}
       </div>
       <input onChange={handleEntry} value={userEntry} autoFocus/>
-      <span> Total Errors: {errors}</span>
+      <span style={{position:"absolute"}}>  Errors: {errors}</span>
     </div>
   );
 }
