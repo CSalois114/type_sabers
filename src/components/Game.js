@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 
-export default function Game({gameObj, setGameObj,level}) {
+export default function Game({gameObj, setGameObj, level, setSubmitArr, submitArr}) {
   const [isGameOver, setIsGameOver] = useState(false);
   const [userEntry, setUserEntry]   = useState("");
   const [errors, setErrors]         = useState(0);
- 
 
+  const navigate = useNavigate();
+ 
   const startTime = useRef(new Date());
   
   const index = useRef(0);
@@ -26,7 +28,7 @@ export default function Game({gameObj, setGameObj,level}) {
       .then((res) => res.json())
       .then((data) => setGameObj(data[level]));
   }, []);
-  console.log(gameObj)
+
 
   useEffect(() => {
     let tickRate
@@ -62,6 +64,14 @@ export default function Game({gameObj, setGameObj,level}) {
   const percentAccuracy = () => 
     completed ? completed.split("").length / (completed.split("").length + errors) * 100 : 100;
 
+  const finalScore = Math.round((wordsPerMin() * 100)+(completed*(percentAccuracy()/100)-(errors*2)));
+
+  const handleSubmission = () => {
+    setSubmitArr([Math.round(wordsPerMin()), Math.round(percentAccuracy()), finalScore]);
+    navigate("/scorecard");
+  };
+  console.log(submitArr)
+
   const display = () => {
     if(isGameOver){
        return (
@@ -70,7 +80,7 @@ export default function Game({gameObj, setGameObj,level}) {
           <h4 className="completed title">{Math.round(secondsSinceStart())} Seconds</h4>
           <h4 className="completed title">WPM {Math.round(wordsPerMin())}</h4>
           <h4 className="completed title">Accuracy {Math.round(percentAccuracy())}%</h4> 
-          <button>Submit Score</button>
+          <button className="button" onClick={handleSubmission}>Submit Score</button>
         </div>
        )
     } else {
