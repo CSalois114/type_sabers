@@ -57,15 +57,24 @@ export default function Game() {
     }
   }
 
-  const secondsSinceStart = () => (new Date().getTime() - startTime.current.getTime()) / 1000
+  const secondsSinceStart = () => 
+    (new Date().getTime() - startTime.current.getTime()) / 1000;
+    
+  const wordsPerMin = () => 
+    completed ? completed.split(" ").length / (secondsSinceStart() / 60) : 0;
 
+  const percentAccuracy = () => 
+    completed ? completed.split("").length / (completed.split("").length + errors) * 100 : 100;
 
   const display = () => {
     if(isGameOver){
        return (
          <div>
           <h1 className="completed title over">Game Over</h1>
-          <h4 className="completed title">{Math.floor(secondsSinceStart())} Seconds</h4>
+          <h4 className="completed title">{Math.round(secondsSinceStart())} Seconds</h4>
+          <h4 className="completed title">WPM {Math.round(wordsPerMin())}</h4>
+          <h4 className="completed title">Accuracy {Math.round(percentAccuracy())}%</h4> 
+          <button>Submit Score</button>
         </div>
        )
     } else {
@@ -87,7 +96,7 @@ export default function Game() {
       <div id="gameTextBox" ref={gameBox}>
         {display()}
       </div>
-      <input onChange={handleEntry} value={userEntry} />
+      <input onChange={handleEntry} value={userEntry} autoFocus/>
       <span> Total Errors: {errors}</span>
     </div>
   );

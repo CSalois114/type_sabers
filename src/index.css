@@ -43,7 +43,7 @@ code {
 }
 
 .over {
-  padding-top: 280px;
+  padding-top: 200px;
 }
 
 #gameText {
@@ -53,7 +53,7 @@ code {
 
 @keyframes textCrawl {
   from{
-    margin-top: 530px;
+    margin-top: 510px;
   } to {
     margin-top: -500px;
   }
