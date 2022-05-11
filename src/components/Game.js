@@ -37,7 +37,6 @@ export default function Game({ episodes }) {
       .then((res) => res.json())
       .then(data => setGameObj(data[level]));
     }
-    console.log("only once")
 
     let tickRate
     if(!isGameOver) {
@@ -50,7 +49,11 @@ export default function Game({ episodes }) {
       }, 500);
     }
 
+    const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
+    song.play()
+
     return(() => {
+      song.pause()
       clearInterval(tickRate)
     });
   }, []);
