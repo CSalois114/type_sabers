@@ -13,32 +13,30 @@ export default function Leaderboard() {
   .map(jedi=>{
     return (
         <tr key={jedi.id}>
-          <td>{jedi.name}</td>
+          <td style={{"font-family": 'Star Jedi'}}>{jedi.name.toLowerCase()}</td>
           <td>{jedi.wpm}</td>
           <td>{jedi.accuracy}%</td>
-          <td>{jedi.score}</td>
+          <td id='swFont' style={{"color": '#FFE81F'}}>{jedi.score}</td>
         </tr>
     )
   })
 
   return (
-    <table>
-      <thead id="swFont">
-        <tr>
-          <th>Leaderboard</th>
-        </tr>
-      </thead>
-       <thead>
-        <tr>
-          <th>Master</th>
-          <th>Words/Minute</th>
-          <th>Accuracy</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-      {renderJediMasters}
-      </tbody>
-    </table>
+    <div>
+      <h1 id="swFont" style={{"color": '#FFE81F'}}>Leaderboard</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Master</th>
+            <th>Words/Minute</th>
+            <th>Accuracy</th>
+            <th id='swFont' style={{"color": '#FFE81F'}}>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        {renderJediMasters}
+        </tbody>
+      </table>
+    </div>
   )
 }

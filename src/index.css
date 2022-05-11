@@ -102,6 +102,30 @@ code {
   
 }
 
+table {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: 1px solid white;
+}
+thead{
+  font-family: 'Star Jedi';
+  font-weight: 100;
+  font-size: larger;
+}
+th {
+  width: 33%;
+  padding: 20px;
+  border-bottom: 1px solid white;
+}
+
+td {
+  width: 33%;
+  padding: 5px;
+  border-bottom: 1px solid white;
+}
+
 .button{
   background:#FFE81F;
   color: black;
