@@ -14,9 +14,9 @@ export default function Leaderboard() {
   .map(jedi=>{
     return (
         <tr key={jedi.id}>
-          <td style={{"font-family": 'Star Jedi'}}>{jedi.name.toLowerCase()}</td>
-          <td style={{"font-weight": '750'}}>{jedi.wpm}</td>
-          <td style={{"font-weight": '750'}}>{jedi.accuracy}%</td>
+          <td style={{"fontFamily": 'Star Jedi'}}>{jedi.name.toLowerCase()}</td>
+          <td style={{"fontWeight": '750'}}>{jedi.wpm}</td>
+          <td style={{"fontWeight": '750'}}>{jedi.accuracy}%</td>
           <td id='swFont' style={{"color": '#FFE81F'}}>{jedi.score}</td>
         </tr>
     )
@@ -24,7 +24,7 @@ export default function Leaderboard() {
 
   return (
     <div>
-      <h1 id="swFont" style={{"color": '#FFE81F', "font-size": 'xxx-large'}}>Leaderboard</h1>
+      <h1 id="swFont" style={{"color": '#FFE81F', "fontSize": 'xxx-large'}}>Leaderboard</h1>
       <table>
         <thead>
           <tr>
