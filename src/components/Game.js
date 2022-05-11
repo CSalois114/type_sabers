@@ -38,13 +38,13 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
     if(!isGameOver) {
       tickRate = setInterval(() => {
         if(checkIsGameOver()){
+          finalTime.current = secondsSinceStart();
           clearInterval(tickRate);
           setIsGameOver(true);
         }
       }, 500);
     }
 
-    finalTime.current = secondsSinceStart();
     
     return(() => {
       clearInterval(tickRate)

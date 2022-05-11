@@ -6,6 +6,13 @@
       "wpm": 25,
       "accuracy": 75,
       "id": 1
+    },
+    {
+      "name": "Chris Salois",
+      "score": null,
+      "wpm": 45,
+      "accuracy": 87,
+      "id": 2
     }
   ],
   "gameTexts": [
