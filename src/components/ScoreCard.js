@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ScoreCard({submitArr}) {
   const [formData, setFormData] = useState({
-    name: "",
+    name: "Unknown Jedi",
     score: submitArr[2],
     wpm: submitArr[0],
     accuracy: submitArr[1],
@@ -39,20 +39,18 @@ export default function ScoreCard({submitArr}) {
 
   return (
     <div>
-      <h1>Battle Score</h1>
+      <h1 id='swFont' style={{"color": '#FFE81F'}}>Battle Summary</h1>
       <form onSubmit={handleSubmit}>
-        <label>Name:
-        <input type="text" placeholder="Enter Name..." name="name" onChange={handleChange}></input>
+        <label>
+          <input style={{"height": '20px'}} type="text" placeholder="Enter Name..." name="name" onChange={handleChange} />
         </label>
+        <input className="button" type="submit" value="Submit"  />
         <br />
-        <label>Score: {formData.score}
-        </label>
+        <label>Accuracy: {formData.accuracy}</label>
         <br />
-        <label>WPM: {formData.wpm}
-        </label>
+        <label>WPM: {formData.wpm}</label>
         <br />
-        <label>Accuracy: {formData.accuracy}
-        </label>
+        <label>Score: {formData.score}</label>
       </form>
     </div>
   )

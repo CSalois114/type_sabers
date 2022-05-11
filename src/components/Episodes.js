@@ -19,7 +19,9 @@ export default function Episodes({setLevel}) {
 
   const episodeStyles = {
     "color": "#FFE81F",
-    "cursor": "pointer"
+    "cursor": "pointer",
+    "font-family": "Franlin Gothic",
+    "font-family": "sans-serif",
   };
 
   const renderEpisodes = episodes.map(e=> {return <h1 key={e.level} style={episodeStyles} onClick={()=> handleClick(e.level)}>{e.episode}</h1>});
@@ -28,7 +30,7 @@ export default function Episodes({setLevel}) {
   return (
     <div>
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt='Star Wars' className='SWLogo'/>
-      <h1>Choose an Episode:</h1>
+      <h1 id="swFont">Choose an Episode:</h1>
       {renderEpisodes}
     </div>
   )

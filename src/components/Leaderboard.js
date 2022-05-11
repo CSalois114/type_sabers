@@ -9,20 +9,34 @@ export default function Leaderboard() {
     .then(setJedis)
   }, []);
 
-  const renderJediMasters = jedis.map(jedi=>{
+  const renderJediMasters = jedis.sort((a,b)=>{return b.score - a.score})
+  .map(jedi=>{
     return (
-      <div key={jedi.id}>
-        <h2>Master {jedi.name}</h2>
-        <h2>Score: {jedi.score}</h2>
-        <h3>WPM: {jedi.wpm}</h3>
-        <h3>Accuracy: {jedi.accuracy}%</h3>
-      </div>
+        <tr key={jedi.id}>
+          <td style={{"font-family": 'Star Jedi'}}>{jedi.name.toLowerCase()}</td>
+          <td>{jedi.wpm}</td>
+          <td>{jedi.accuracy}%</td>
+          <td id='swFont' style={{"color": '#FFE81F'}}>{jedi.score}</td>
+        </tr>
     )
   })
 
   return (
     <div>
-      {renderJediMasters}
+      <h1 id="swFont" style={{"color": '#FFE81F'}}>Leaderboard</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Master</th>
+            <th>Words/Minute</th>
+            <th>Accuracy</th>
+            <th id='swFont' style={{"color": '#FFE81F'}}>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        {renderJediMasters}
+        </tbody>
+      </table>
     </div>
   )
 }

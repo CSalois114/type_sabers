@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default function NavBar() {
 
   return (
-    <div className='navbar'>
+    <div id="swFont" className='navbar'>
       <NavLink 
       style={({isActive})=>({
         color: isActive ? "#FFE81F":"white"
@@ -14,7 +14,7 @@ export default function NavBar() {
       >Home</NavLink>
       <NavLink 
       style={({isActive})=>({
-        color: isActive ? "#FFE81F":"white"
+        color: isActive ? "#FFE81F":"white",
       })}
       to="/episodes"
       >Episodes</NavLink>

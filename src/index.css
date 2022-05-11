@@ -1,3 +1,6 @@
+@import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,14 +16,22 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 5px 12px 50px 12px;
+  margin: 5px 0px 50px 90px;
   height: 75px;
-  font-size: larger;
+  font-size: x-large;
+  font-family: 'Franklin Gothic', sans-serif;
+  font-weight: 600;
 }
 
 .SWLogo {
   max-width: 50vw;
   height: auto;
+}
+
+#swFont{
+  font-family: 'Star Jedi';
+  text-shadow: 4px 4px 4px #aaa;
+  font-weight: 100;
 }
 
 code {
@@ -38,7 +49,7 @@ code {
   height: 600px;
   background-color: black;
   overflow: hidden;
-  box-shadow: 0 0 10pc white;
+  box-shadow: 0 0 10pc #aaa;
   border-radius: 10px;
 }
 
@@ -48,7 +59,7 @@ code {
 
 #gameText {
   margin-top: -500px;
-  animation: textCrawl 100s linear 1;
+  animation: textCrawl 1s linear 1;
 }
 
 @keyframes textCrawl {
@@ -87,10 +98,37 @@ code {
 #appBody{
   width: 100%;
   text-align: center;
+  font-family: 'Franklin Gothic', sans-serif;
+  
+}
+
+table {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: 1px solid white;
+}
+thead{
+  font-family: 'Star Jedi';
+  font-weight: 100;
+  font-size: larger;
+}
+th {
+  width: 33%;
+  padding: 20px;
+  border-bottom: 1px solid white;
+}
+
+td {
+  width: 33%;
+  padding: 5px;
+  border-bottom: 1px solid white;
 }
 
 .button{
   background:#FFE81F;
   color: black;
   cursor: pointer;
+  font-family: 'Star Jedi';
 }

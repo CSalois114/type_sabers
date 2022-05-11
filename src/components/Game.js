@@ -74,7 +74,7 @@ export default function Game({gameObj, setGameObj, level, setSubmitArr, submitAr
 
   const handleSubmission = () => {
     setSubmitArr([Math.round(wordsPerMin()), Math.round(percentAccuracy()), finalScore()]);
-    navigate("/scorecard");
+    navigate("/scorecard/new");
   };
 
   const display = () => {

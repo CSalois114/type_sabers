@@ -1,18 +1,74 @@
 {
   "highScores": [
     {
-      "name": "Ryan A",
-      "score": 500,
-      "wpm": 25,
-      "accuracy": 75,
+      "name": "Yoda",
+      "score": 2250,
+      "wpm": 89,
+      "accuracy": 96,
       "id": 1
     },
     {
-      "name": "Chris Salois",
-      "score": null,
-      "wpm": 45,
-      "accuracy": 87,
+      "name": "Luke Skywalker",
+      "score": 1975,
+      "wpm": 86,
+      "accuracy": 88,
       "id": 2
+    },
+    {
+      "name": "Anikan Skywalker",
+      "score": 1900,
+      "wpm": 85,
+      "accuracy": 83,
+      "id": 3
+    },
+    {
+      "name": "Obi-Wan Kenobi",
+      "score": 1875,
+      "wpm": 85,
+      "accuracy": 80,
+      "id": 4
+    },
+    {
+      "name": "Qui-Gon Jinn",
+      "score": 1825,
+      "wpm": 82,
+      "accuracy": 81,
+      "id": 5
+    },
+    {
+      "name": "Mace Windu",
+      "score": 1800,
+      "wpm": 80,
+      "accuracy": 81,
+      "id": 6
+    },
+    {
+      "name": "Rey Palpatine",
+      "score": 1750,
+      "wpm": 77,
+      "accuracy": 80,
+      "id": 7
+    },
+    {
+      "name": "Ben Solo",
+      "score": 1690,
+      "wpm": 75,
+      "accuracy": 79,
+      "id": 8
+    },
+    {
+      "name": "Grogu",
+      "score": 1600,
+      "wpm": 72,
+      "accuracy": 77,
+      "id": 9
+    },
+    {
+      "name": "Leia Organa",
+      "score": 1500,
+      "wpm": 68,
+      "accuracy": 75,
+      "id": 10
     }
   ],
   "gameTexts": [
