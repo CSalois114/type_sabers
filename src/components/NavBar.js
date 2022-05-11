@@ -22,14 +22,8 @@ export default function NavBar() {
       style={({isActive})=>({
         color: isActive ? "#FFE81F":"white"
       })}
-      to="/game"
-      >Game</NavLink>
-      <NavLink 
-      style={({isActive})=>({
-        color: isActive ? "#FFE81F":"white"
-      })}
       to="/leaderboard"
-      >Leaderboard</NavLink>
+      >Jedi Masters</NavLink>
     </div>
   )
 }

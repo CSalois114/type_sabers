@@ -10,24 +10,30 @@ import ScoreCard from "./ScoreCard";
 
 export default function App() {
   const [level, setLevel]           = useState(1);
+  const [submitArr, setSubmitArr]   = useState([25,75,500])
   const [gameObj, setGameObj]       = useState({
     level: "",
     episode: "",
     title: "",
     text: ""
   });
+  console.log(submitArr)
+
+
   return (
     <div>
       <NavBar />
       <div id="appBody">
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/game" element={<Game 
+          <Route path="/" element={<Home 
+            setLevel={setLevel} level={level} />}/>
+          <Route path="/episodes" element={<Episodes 
+            setLevel={setLevel} />}/>
+          <Route path="/episodes/:level" element={<Game 
             gameObj={gameObj} setGameObj={setGameObj}
-            level={level} />}/>
+            level={level} setSubmitArr={setSubmitArr} submitArr={submitArr} />}/>
+          <Route path="/scorecard" element={<ScoreCard submitArr={submitArr}/>} />
           <Route path="/leaderboard" element={<Leaderboard />}/>
-          <Route path="/episodes" element={<Episodes setLevel={setLevel} />}/>
-          <Route path="/scorecard" element={<ScoreCard />} />
         </Routes>
       </div>
     </div>

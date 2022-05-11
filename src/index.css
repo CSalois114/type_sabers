@@ -14,7 +14,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   margin: 5px 12px 50px 12px;
-  height: 100px;
+  height: 75px;
   font-size: larger;
 }
 
@@ -87,4 +87,10 @@ code {
 #appBody{
   width: 100%;
   text-align: center;
+}
+
+.button{
+  background:#FFE81F;
+  color: black;
+  cursor: pointer;
 }
