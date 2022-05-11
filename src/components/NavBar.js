@@ -17,7 +17,7 @@ export default function NavBar() {
         color: isActive ? "#FFE81F":"white"
       })}
       to="/game"
-      >Start A Game</NavLink>
+      >Episodes</NavLink>
       <NavLink 
       style={({isActive})=>({
         color: isActive ? "#FFE81F":"white"
