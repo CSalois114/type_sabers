@@ -1,6 +1,14 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Episodes({ episodes }) {
+export default function Episodes() {
+  const [episodes, setEpisodes] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8001/gameTexts")
+      .then((res) => res.json())
+      .then(setEpisodes);
+  }, []);
+
   const navigate = useNavigate();
 
   const episodeStyles = {
