@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 export default function Episodes({ episodes }) {
   const navigate = useNavigate();
 
+
   const episodeStyles = {
     color: "#FFE81F",
-    cursor: "pointer",
+    cursor: "url(https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png), auto",
     // fontFamily: "Gothic"
   };
 
@@ -23,7 +24,7 @@ export default function Episodes({ episodes }) {
   return (
     <div>
       <img
-        src="https://www.freepnglogos.com/uploads/star-wars-logo-png-10.png"
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
         alt="Star Wars"
         className="SWLogo"
       />

@@ -1,6 +1,8 @@
 @import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
 
-
+* {
+  cursor: url("https://cdn.custom-cursor.com/db/9764/32/star-wars-millennium-falcon-cursor.png"), auto;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,6 +13,7 @@ body {
   background-image: url("https://wallpaperaccess.com/full/1268183.jpg");
   /* background: black; */
   color: white;
+
 }
 
 .navbar {
@@ -22,6 +25,7 @@ body {
   font-size: x-large;
   font-family: 'Franklin Gothic', sans-serif;
   font-weight: 600;
+  /* cursor: "url(https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png), auto", */
 }
 
 .SWLogo {
@@ -100,7 +104,7 @@ code {
   width: 100%;
   text-align: center;
   font-family: 'Franklin Gothic', sans-serif;
-  
+
 }
 
 table {
@@ -130,6 +134,7 @@ td {
 .button{
   background:#FFE81F;
   color: black;
-  cursor: pointer;
+  cursor: url("https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png"), auto;
   font-family: 'Star Jedi';
 }
+
