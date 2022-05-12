@@ -11,13 +11,14 @@ export default function Game({ episodes }) {
     title: "",
     text: "",
   });
+
   const level = useParams().level - 1;
-  const navigate = useNavigate();
-  
   const startTime = useRef(new Date());
-  
   const index = useRef(0);
   const textIndex = index.current
+
+  const completed = gameObj.text.slice(0, textIndex);
+  const uncompleted = gameObj.text.slice(textIndex);
   
   const cursor = useRef();
   const gameBox = useRef();
@@ -26,14 +27,11 @@ export default function Game({ episodes }) {
     gameBox.current.getBoundingClientRect().top
   );
   
-  const completed = gameObj.text.slice(0, textIndex);
-  const uncompleted = gameObj.text.slice(textIndex);
-  
   useEffect(() => {
     if(episodes[1]) {
       setGameObj(episodes[parseInt(level)]);
     } else {
-    fetch(`http://localhost:8001/gameTexts`)
+      fetch(`http://localhost:8001/gameTexts`)
       .then((res) => res.json())
       .then(data => setGameObj(data[level]));
     }
@@ -48,11 +46,11 @@ export default function Game({ episodes }) {
         }
       }, 500);
     }
-
+    
     const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
     song.volume = .5;
     song.play()
-
+    
     return(() => {
       song.pause()
       clearInterval(tickRate)
@@ -72,20 +70,19 @@ export default function Game({ episodes }) {
       setErrors(errors + 1)
     }
   }
-
+  
   const charsCompleted = () => completed.split("").length;
-
-  const wordsPerMin = () => 
-    completed ? completed.split(" ").length / (finalTime.current / 60) : 0;
-
-  const percentAccuracy = () => 
-    completed ? charsCompleted() / (charsCompleted() + errors) * 100 : 100;
+  const wordsPerMin = () => (
+    completed ? completed.split(" ").length / (finalTime.current / 60) : 0);
+    
+  const percentAccuracy = () => (
+    completed ? charsCompleted() / (charsCompleted() + errors) * 100 : 100);
 
   const finalScore = () =>
     Math.round((wordsPerMin() * 100)+(charsCompleted()*(percentAccuracy()/100)-(errors*2)));
-
-  const handleSubmission = () => {
     
+  const navigate = useNavigate();
+  const handleSubmission = () => { 
     const score = {
       wpm: Math.round(wordsPerMin()),
       accuracy: Math.round(percentAccuracy()),
@@ -107,7 +104,7 @@ export default function Game({ episodes }) {
        )
     } else {
        return (
-        <div id="gameText">
+        <div id="gameText" style={{animationDuration: `${200 - (20 * level)}s`}}>
           <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
