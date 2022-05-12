@@ -161,7 +161,7 @@ export default function Game() {
        )
     } else {
        return (
-        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${20 - (20 * level.current)}s`}}>
+        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${220 - (20 * level.current)}s`}}>
           <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
