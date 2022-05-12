@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from "@testing-library/react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -11,21 +12,25 @@ export default function Game({ episodes }) {
     title: "",
     text: "",
   });
-
   const level = useParams().level - 1;
+  
   const startTime = useRef(new Date());
+  const finalTime = useRef()
   const index = useRef(0);
   const textIndex = index.current
-
+  
   const completed = gameObj.text.slice(0, textIndex);
   const uncompleted = gameObj.text.slice(textIndex);
+  const isTextComplete = useRef(false);
+  (completed && completed == gameObj.text) && (isTextComplete.current = true);
   
   const cursor = useRef();
   const gameBox = useRef();
-  const checkIsGameOver = () => (
-    cursor.current.getBoundingClientRect().top <
-    gameBox.current.getBoundingClientRect().top
-  );
+  const isCursorOffScreen = () => {
+    const cursorHeight = cursor.current.getBoundingClientRect().top; 
+    const gameBoxHeight = gameBox.current.getBoundingClientRect().top;
+    return cursorHeight < gameBoxHeight;
+  };
   
   useEffect(() => {
     if(episodes[1]) {
@@ -36,16 +41,13 @@ export default function Game({ episodes }) {
       .then(data => setGameObj(data[level]));
     }
 
-    let tickRate
-    if(!isGameOver) {
-      tickRate = setInterval(() => {
-        if(checkIsGameOver()){
-          finalTime.current = secondsSinceStart();
-          clearInterval(tickRate);
-          setIsGameOver(true);
-        }
-      }, 500);
-    }
+    const gameLoop = setInterval(() => {
+      if(isCursorOffScreen() || isTextComplete.current){
+        finalTime.current = secondsSinceStart();
+        clearInterval(gameLoop);
+        setIsGameOver(true);
+      }
+    }, 500);
     
     const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
     song.volume = .5;
@@ -53,14 +55,10 @@ export default function Game({ episodes }) {
     
     return(() => {
       song.pause()
-      clearInterval(tickRate)
+      clearInterval(gameLoop)
     });
   }, []);
-
-  const finalTime = useRef()
-  const secondsSinceStart = () => 
-    (new Date().getTime() - startTime.current.getTime()) / 1000;
-
+  
   const handleEntry = (e) => {
     if(isGameOver) return setUserEntry("");
     if(e.target.value.slice(-1) === gameObj.text.charAt(textIndex)){
@@ -71,15 +69,18 @@ export default function Game({ episodes }) {
     }
   }
   
-  const charsCompleted = () => completed.split("").length;
+  const secondsSinceStart = () => (
+    (new Date().getTime() - startTime.current.getTime()) / 1000
+  );
   const wordsPerMin = () => (
-    completed ? completed.split(" ").length / (finalTime.current / 60) : 0);
-    
+    completed ? completed.split(" ").length / (finalTime.current / 60) : 0
+  );
   const percentAccuracy = () => (
-    completed ? charsCompleted() / (charsCompleted() + errors) * 100 : 100);
-
-  const finalScore = () =>
-    Math.round((wordsPerMin() * 100)+(charsCompleted()*(percentAccuracy()/100)-(errors*2)));
+    completed ? textIndex / (textIndex + errors) * 100 : 100
+  );
+  const finalScore = () => (
+    Math.round((wordsPerMin() * 100)+(textIndex*(percentAccuracy()/100)-(errors*2)))
+  );
     
   const navigate = useNavigate();
   const handleSubmission = () => { 
@@ -104,7 +105,7 @@ export default function Game({ episodes }) {
        )
     } else {
        return (
-        <div id="gameText" style={{animationDuration: `${200 - (20 * level)}s`}}>
+        <div id="gameText" style={{animationDuration: `${220 - (20 * level)}s`}}>
           <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
