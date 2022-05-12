@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars" className="SWLogo"/>
+      <img src="https://www.freepnglogos.com/uploads/star-wars-logo-png-10.png" alt="Star Wars" className="SWLogo"/>
       <h1 id="swFont">TypeSabers</h1>
       <button className="button" onClick={handleClick}>Begin</button>
     </>

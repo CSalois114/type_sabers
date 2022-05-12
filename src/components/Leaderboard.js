@@ -25,7 +25,7 @@ export default function Leaderboard() {
   return (
     <div>
       <h1 id="swFont" style={{"color": '#FFE81F', "fontSize": 'xxx-large'}}>Leaderboard</h1>
-      <table>
+      <table style={{background: "black"}}>
         <thead>
           <tr>
             <th>Master</th>

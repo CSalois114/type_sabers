@@ -8,7 +8,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: black;
+  background-image: url("https://wallpaperaccess.com/full/1268183.jpg");
+  /* background: black; */
   color: white;
 }
 
@@ -24,7 +25,7 @@ body {
 }
 
 .SWLogo {
-  max-width: 50vw;
+  max-width: 500px;
   height: auto;
 }
 
@@ -47,9 +48,9 @@ code {
   margin: auto;
   width: 375px;
   height: 600px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
   overflow: hidden;
-  box-shadow: 0 0 10pc #aaa;
+  box-shadow: 0 0 5pc #aaa;
   border-radius: 10px;
 }
 
