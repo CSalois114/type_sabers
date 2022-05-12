@@ -4,7 +4,7 @@ export default function Leaderboard() {
   const [jedis, setJedis] = useState([]);
 
   useEffect(()=>{
-    fetch("http://localhost:8001/highScores")
+    fetch("https://salty-tor-76776.herokuapp.com/highScores")
     .then(r=>r.json())
     .then(setJedis)
   }, []);

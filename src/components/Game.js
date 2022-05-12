@@ -40,7 +40,7 @@ export default function Game() {
   };
   
   useEffect(() => {
-    fetch(`http://localhost:8001/gameTexts`)
+    fetch(`https://salty-tor-76776.herokuapp.com/gameTexts`)
     .then((res) => res.json())
     .then(data => {
       episodes.current = data;
@@ -77,7 +77,7 @@ export default function Game() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8001/highScores`)
+    fetch(`https://salty-tor-76776.herokuapp.com/highScores`)
     .then((res) => res.json())
     .then(leaders => {
       const lastLeader = leaders.sort((a,b)=>{return b.score - a.score}).slice(9)
