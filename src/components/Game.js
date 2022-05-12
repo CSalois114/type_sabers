@@ -1,12 +1,12 @@
-import { computeHeadingLevel } from "@testing-library/react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Game() {
-  const [isGameOver, setIsGameOver] = useState(false);
-  const [userEntry, setUserEntry]   = useState("");
-  const [errors, setErrors]         = useState(0);
-  const [gameObj, setGameObj]       = useState({
+  const [isGameOver, setIsGameOver]       = useState(false);
+  const [highScore, setHighScore]         = useState(0);
+  const [userEntry, setUserEntry]         = useState("");
+  const [errors, setErrors]               = useState(0);
+  const [gameObj, setGameObj]             = useState({
     level: "",
     episode: "",
     title: "",
@@ -22,7 +22,7 @@ export default function Game() {
   const completed         = gameObj.text.slice(0, textIndex);
   const uncompleted       = gameObj.text.slice(textIndex);
   const isTextComplete    = useRef(false);
-  isTextComplete.current  = (completed && completed == gameObj.text);
+  isTextComplete.current  = (completed && completed === gameObj.text);
   
 
   const totalCorrectChars = useRef(0);
@@ -49,7 +49,6 @@ export default function Game() {
 
 
     const gameLoop = setInterval(() => {
-      console.log(totalCorrectChars.current, totalCorrectWords.current)
       if (isTextComplete.current && level.current < 8) {
         totalCorrectWords.current++
         index.current = 0;
@@ -76,6 +75,16 @@ export default function Game() {
       clearInterval(gameLoop)
     });
   }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:8001/highScores`)
+    .then((res) => res.json())
+    .then(leaders => {
+      const lastLeader = leaders.sort((a,b)=>{return b.score - a.score}).slice(9)
+      setHighScore(lastLeader[0].score)
+    })
+  }, []);
+
   
   const handleEntry = (e) => {
     if(isGameOver) return setUserEntry("");
@@ -109,7 +118,7 @@ export default function Game() {
   );
     
   const navigate = useNavigate();
-  const handleSubmission = () => { 
+  const handleVictorySubmission = () => { 
     const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
     sound.play();
     const score = {
@@ -120,20 +129,39 @@ export default function Game() {
     navigate(`/scorecard/new/${JSON.stringify(score)}`);
   };
 
+  const handleLossClick = () => { 
+    const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
+    sound.play();
+    navigate(`/episodes`);
+  };
+
+  const renderGameOverButton = () => {
+    if(finalScore() > highScore) {
+      return (<button className="button" 
+        onClick={handleVictorySubmission}>Submit Score
+        </button>)} else {
+          return (<button className="button" 
+          onClick={handleLossClick}>Continue Training
+          </button>)}; 
+  };
+
+  const gameOverHeading = finalScore() > highScore ? "New Jedi Master" : "Defeated In Battle";
+  
+
   const display = () => {
     if(isGameOver){
        return (
          <div>
-          <h1 className="completed title over">Game Over</h1>
+          <h1 className="completed title over">{gameOverHeading}</h1>
           <h4 className="completed title">{Math.round(finalTime.current)} Seconds</h4>
           <h4 className="completed title">WPM {Math.round(wordsPerMin())}</h4>
           <h4 className="completed title">Accuracy {Math.round(percentAccuracy())}%</h4> 
-          <button className="button" onClick={handleSubmission}>Submit Score</button>
+          {renderGameOverButton()}
         </div>
        )
     } else {
        return (
-        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${220 - (20 * level.current)}s`}}>
+        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${20 - (20 * level.current)}s`}}>
           <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
