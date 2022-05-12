@@ -14,7 +14,6 @@ export default function Episodes() {
   const episodeStyles = {
     color: "#FFE81F",
     cursor: "url(https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png), auto",
-    // fontFamily: "Gothic"
   };
 
   const renderEpisodes = episodes.map((episode) => {
