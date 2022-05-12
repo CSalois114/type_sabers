@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 export default function Episodes({ episodes }) {
   const navigate = useNavigate();
 
-
   const episodeStyles = {
     color: "#FFE81F",
     cursor: "url(https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png), auto",
@@ -11,11 +10,16 @@ export default function Episodes({ episodes }) {
   };
 
   const renderEpisodes = episodes.map((episode) => {
+    const handleClick = () => {
+      const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
+      sound.play()
+      navigate(`/episodes/${episode.level}`)
+      }
     return (
       <h1
         key={episode.level}
         style={episodeStyles}
-        onClick={() => navigate(`/episodes/${episode.level}`)}>
+        onClick={handleClick}>
         {episode.episode}
       </h1>
     );

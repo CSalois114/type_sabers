@@ -84,6 +84,8 @@ export default function Game({ episodes }) {
     
   const navigate = useNavigate();
   const handleSubmission = () => { 
+    const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
+    sound.play();
     const score = {
       wpm: Math.round(wordsPerMin()),
       accuracy: Math.round(percentAccuracy()),

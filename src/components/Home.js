@@ -6,6 +6,8 @@ export default function Home() {
   const navigate = useNavigate(); 
   
   const handleClick = () => {
+    const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
+    sound.play()
     navigate(`/episodes/1`);
   };
 
