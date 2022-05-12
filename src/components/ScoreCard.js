@@ -25,6 +25,8 @@ export default function ScoreCard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
+    sound.play()
 
     fetch("http://localhost:8001/highScores", {
       method: "POST",

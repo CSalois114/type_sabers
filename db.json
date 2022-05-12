@@ -83,6 +83,13 @@
       "wpm": 34,
       "accuracy": 94,
       "id": 12
+    },
+    {
+      "name": "Unknown Jedi",
+      "score": 0,
+      "wpm": 0,
+      "accuracy": 100,
+      "id": 13
     }
   ],
   "gameTexts": [
