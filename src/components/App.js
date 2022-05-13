@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -7,6 +8,19 @@ import Episodes from "./Episodes";
 import ScoreCard from "./ScoreCard";
 
 export default function App() {
+  const [jedis, setJedis] = useState([]);
+
+  useEffect(()=>{
+    fetch("http://localhost:8001/highScores")
+    .then(r=>r.json())
+    .then(setJedis)
+  }, []);
+
+  const addNewJedi = (newJedi) => {
+    const updatedLeaderBoard = [...jedis, newJedi];
+    setJedis(updatedLeaderBoard);
+  }
+
   return (
     <div>
       <NavBar />
@@ -20,9 +34,9 @@ export default function App() {
           />
           <Route
             path="/scorecard/new/:score"
-            element={<ScoreCard/>}
+            element={<ScoreCard addNewJedi={addNewJedi}/>}
           />
-          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/leaderboard" element={<Leaderboard jedis={jedis} />} />
         </Routes>
       </div>
     </div>

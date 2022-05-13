@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
-export default function ScoreCard() {
+export default function ScoreCard({addNewJedi}) {
   const scoreData = (JSON.parse(useParams().score))
   const [formData, setFormData] = useState({
     name: "Unknown Jedi",
@@ -34,9 +34,11 @@ export default function ScoreCard() {
         "content-type": "application/json",
       },
       body: JSON.stringify(formData)
-    });
-    navigate("/leaderboard")
+    })
+    .then(r=>r.json())
+    .then(newLeader=>addNewJedi(newLeader));
 
+    navigate("/leaderboard");
   }
 
   return (

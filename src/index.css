@@ -1,4 +1,4 @@
-@import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
 
 * {
   cursor: url("https://cdn.custom-cursor.com/db/9764/32/star-wars-millennium-falcon-cursor.png"), auto;
@@ -34,7 +34,7 @@ body {
 }
 
 #swFont{
-  font-family: 'Star Jedi';
+  font-family: 'Days One';
   text-shadow: 4px 4px 4px #aaa;
   font-weight: 100;
 }
@@ -115,7 +115,7 @@ table {
   border: 1px solid white;
 }
 thead{
-  font-family: 'Star Jedi';
+  font-family: 'Days One';
   font-weight: 100;
   font-size: larger;
 }
@@ -135,6 +135,6 @@ td {
   background:#FFE81F;
   color: black;
   cursor: url("https://cdn.custom-cursor.com/db/9763/32/star-wars-millennium-falcon-pointer.png"), auto;
-  font-family: 'Star Jedi';
+  font-family: 'Days One';
 }
 
