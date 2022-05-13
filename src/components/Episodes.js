@@ -35,7 +35,7 @@ export default function Episodes() {
   return (
     <div>
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
+        src="https://www.freepnglogos.com/uploads/star-wars-logo-png-10.png"
         alt="Star Wars"
         className="SWLogo"
       />
