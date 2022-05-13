@@ -28,7 +28,7 @@ export default function ScoreCard({addNewJedi}) {
     const sound = new Audio("https://www.myinstants.com/media/sounds/blaster.mp3");
     sound.play()
 
-    fetch("http://localhost:8001/highScores", {
+    fetch("https://salty-tor-76776.herokuapp.com/highScores", {
       method: "POST",
       headers: {
         "content-type": "application/json",

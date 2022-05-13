@@ -1,7 +1,9 @@
 import React from 'react'
 
+
 export default function Leaderboard({jedis}) {
   console.log(jedis)
+
 
   const renderJediMasters = jedis.sort((a,b)=>{return b.score - a.score})
   .slice(0,10)
