@@ -1,6 +1,6 @@
-import { computeHeadingLevel } from "@testing-library/react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import hilt from '../images/hilt.png'
 
 export default function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
@@ -15,15 +15,17 @@ export default function Game() {
 
   const level             = useRef(useParams().level - 1);
   const episodes          = useRef();
-  
+
+  const animationSpeed    = 220 - (20 * level.current);
+  const saberColor        = useRef("blue")
+
   const index             = useRef(0);
   const textIndex         = index.current
   
   const completed         = gameObj.text.slice(0, textIndex);
   const uncompleted       = gameObj.text.slice(textIndex);
   const isTextComplete    = useRef(false);
-  isTextComplete.current  = (completed && completed == gameObj.text);
-  
+  isTextComplete.current  = (completed && completed == gameObj.text); 
 
   const totalCorrectChars = useRef(0);
   const totalCorrectWords = useRef(0);
@@ -47,9 +49,8 @@ export default function Game() {
       setGameObj(data[level.current]);
     });
 
-
     const gameLoop = setInterval(() => {
-      console.log(totalCorrectChars.current, totalCorrectWords.current)
+      console.log("chars", totalCorrectChars.current, "words", totalCorrectWords.current)
       if (isTextComplete.current && level.current < 8) {
         totalCorrectWords.current++
         index.current = 0;
@@ -69,11 +70,11 @@ export default function Game() {
     
     const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
     song.volume = .5;
-    song.play()
+    song.play();
     
     return(() => {
-      song.pause()
-      clearInterval(gameLoop)
+      song.pause();
+      clearInterval(gameLoop);
     });
   }, []);
   
@@ -81,6 +82,7 @@ export default function Game() {
     if(isGameOver) return setUserEntry("");
     if(e.target.value.slice(-1) === gameObj.text.charAt(textIndex)){
       totalCorrectChars.current++
+      saberColor.current = "blue";
       if (gameObj.text.charAt(textIndex) === " ") {
         setUserEntry("")
         totalCorrectWords.current++
@@ -89,6 +91,7 @@ export default function Game() {
       }
       index.current = textIndex + 1  
     } else {
+      saberColor.current = "red"
       setErrors(errors + 1)
     }
   }
@@ -133,7 +136,7 @@ export default function Game() {
        )
     } else {
        return (
-        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${220 - (20 * level.current)}s`}}>
+        <div id="gameText" ref={animatedTextDiv} style={{animationDuration: `${animationSpeed}s`}}>
           <h3 className="completed title">{gameObj.episode}</h3>
           <h2 className="completed title">{gameObj.title}</h2>
           <span className="completed">{completed}</span>
@@ -150,8 +153,11 @@ export default function Game() {
       <div id="gameTextBox" ref={gameBox}>
         {display()}
       </div>
-      <input onChange={handleEntry} value={userEntry} autoFocus/>
-      <span style={{position:"absolute"}}>  Errors: {errors}</span>
+      <div id="gameUI">
+        <input className={`saber ${saberColor.current}`} onChange={handleEntry} value={userEntry} autoFocus/>
+        <img id="hilt" src={hilt}/>
+        {/* <span style={{position:"absolute"}}>  Errors: {errors}</span> */}
+      </div>
     </div>
   );
 }

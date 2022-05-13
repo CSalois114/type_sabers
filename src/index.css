@@ -54,7 +54,7 @@ code {
   height: 600px;
   background-color: rgba(0, 0, 0, 0.85);
   overflow: hidden;
-  box-shadow: 0 0 5pc #aaa;
+  box-shadow: 0 0 3pc #aaa;
   border-radius: 10px;
 }
 
@@ -63,8 +63,7 @@ code {
 }
 
 #gameText {
-  margin-top: -500px;
-  animation: textCrawl 100s linear 1;
+  animation: textCrawl linear 1;
 }
 
 @keyframes textCrawl {
@@ -138,3 +137,46 @@ td {
   font-family: 'Star Jedi';
 }
 
+#gameUI {
+  position: relative;
+  top: 20px;
+  left: 49px;
+  margin: auto;
+  width: 375px;
+  height: 50px;
+}
+
+.saber {
+  color: rgb(86, 85, 85);
+  width: 240px;
+  border: 3px solid rgb(37, 55, 61);
+  border-radius: 15px;
+  background-color: rgb(32, 31, 31);
+  font-size: 15px;
+
+}
+
+.saber:focus {
+  outline: none;
+}
+
+.blue:focus {
+  border: 3px solid rgb(72, 255, 85);
+  background-color: rgb(191, 252, 193);
+  box-shadow: 0 0 30px rgb(152, 255, 147);
+}
+
+.red:focus {
+  border: 3px solid rgb(252, 28, 28);
+  background-color: rgb(230, 147, 147);
+  box-shadow: 0 0 30px rgb(247, 69, 69);
+}
+
+#hilt {
+  position: absolute;
+  top: -22px;
+  left: -30px;
+  max-width: 90px;
+  transform: rotate(35deg);
+  /* z-index: -1; */
+}
