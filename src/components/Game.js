@@ -36,12 +36,19 @@ export default function Game() {
   const animatedTextDiv   = useRef();
   const cursor            = useRef();
   const gameBox           = useRef();
-  const isCursorOffScreen = () => {
+
+  const isCursorOutOfBounds = () => {
     const cursorHeight = cursor.current.getBoundingClientRect().top; 
     const gameBoxHeight = gameBox.current.getBoundingClientRect().top;
     return cursorHeight < gameBoxHeight;
   };
-  
+
+  const resetElementAnimation = (element) => {
+    element.style.animation = 'none';
+    element.getBoundingClientRect();
+    element.style.animation = "";
+  }
+
   useEffect(() => {
     fetch(`https://salty-tor-76776.herokuapp.com/gameTexts`)
     .then((res) => res.json())
@@ -49,60 +56,57 @@ export default function Game() {
       episodes.current = data;
       setGameObj(data[level.current]);
     });
-
+    
+    fetch(`https://salty-tor-76776.herokuapp.com/highScores`)
+    .then((res) => res.json())
+    .then(leaders => {
+      const lastLeader = leaders.sort((a,b)=> b.score - a.score).slice(9);
+      setHighScore(lastLeader[0].score);
+    });
+  }, []);
+  
+  useEffect(() => {
     const gameLoop = setInterval(() => {
       if (isTextComplete.current && level.current < 8) {
-        totalCorrectWords.current++
+        totalCorrectWords.current++;
         index.current = 0;
         level.current++;
         setGameObj(episodes.current[level.current]);
+        resetElementAnimation(animatedTextDiv.current);
 
-        animatedTextDiv.current.style.animation = 'none';
-        animatedTextDiv.current.getBoundingClientRect();
-        animatedTextDiv.current.style.animation = "";
-
-      } else if (isCursorOffScreen() || isTextComplete.current){
+      } else if (isCursorOutOfBounds() || isTextComplete.current){
         finalTime.current = secondsSinceStart();
         clearInterval(gameLoop);
         setIsGameOver(true);
       }
     }, 500);
     
-    const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
-    song.volume = .5;
-    song.play();
-    
-    return(() => {
-      song.pause();
-      clearInterval(gameLoop);
-    });
+    return () => clearInterval(gameLoop);
   }, []);
 
   useEffect(() => {
-    fetch(`https://salty-tor-76776.herokuapp.com/highScores`)
-    .then((res) => res.json())
-    .then(leaders => {
-      const lastLeader = leaders.sort((a,b)=>{return b.score - a.score}).slice(9)
-      setHighScore(lastLeader[0].score)
-    })
-  }, []);
+    const song = new Audio("https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3")
+    song.volume = .5;
+    song.play();
 
-  
+    return () => song.pause();
+  }, [])
+
   const handleEntry = (e) => {
     if(isGameOver) return setUserEntry("");
     if(e.target.value.slice(-1) === gameObj.text.charAt(textIndex)){
-      totalCorrectChars.current++
+      totalCorrectChars.current++;
       saberColor.current = "blue";
       if (gameObj.text.charAt(textIndex) === " ") {
-        setUserEntry("")
-        totalCorrectWords.current++
+        setUserEntry("");
+        totalCorrectWords.current++;
       } else {
-        setUserEntry( e.target.value)
+        setUserEntry(e.target.value);
       }
-      index.current = textIndex + 1  
+      index.current = textIndex + 1;  
     } else {
-      saberColor.current = "red"
-      setErrors(errors + 1)
+      saberColor.current = "red";
+      setErrors(errors + 1);
     }
   }
   
