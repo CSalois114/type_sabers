@@ -68,9 +68,9 @@ code {
 
 @keyframes textCrawl {
   from{
-    margin-top: 510px;
+    transform: translate(0, 510px);
   } to {
-    margin-top: -500px;
+    transform: translate(0, -100%);
   }
 }
 
