@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 5px 0px 50px 90px;
+  margin: 5px 0px 0px 90px;
   height: 75px;
   font-size: x-large;
   font-family: 'Franklin Gothic', sans-serif;
@@ -29,6 +29,7 @@ body {
 }
 
 .SWLogo {
+  margin-top: 60px;
   max-width: 500px;
   height: auto;
 }
@@ -50,12 +51,15 @@ code {
 
 #gameTextBox {
   margin: auto;
+  margin-top: -70px;
+  margin-bottom: 60px;
   width: 375px;
   height: 600px;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  box-shadow: 0 0 3pc #aaa;
+  /* box-shadow: 0 0 3pc #aaa; */
   border-radius: 10px;
+  transform: perspective(500px) rotateX(30deg);
 }
 
 .over {
