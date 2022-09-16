@@ -3,6 +3,7 @@
 * {
   cursor: url("https://cdn.custom-cursor.com/db/9764/32/star-wars-millennium-falcon-cursor.png"), auto;
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,9 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://wallpaperaccess.com/full/1268183.jpg");
-  /* background: black; */
+  background-color: black;
   color: white;
-
 }
 
 .navbar {
