@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Episodes() {
   const [episodes, setEpisodes] = useState([]);
   useEffect(() => {
-    fetch("https://salty-tor-76776.herokuapp.com/gameTexts")
+    fetch("http://localhost:8001/gameTexts")
       .then((res) => res.json())
       .then(setEpisodes);
   }, []);

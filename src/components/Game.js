@@ -50,14 +50,14 @@ export default function Game() {
   }
 
   useEffect(() => {
-    fetch(`https://salty-tor-76776.herokuapp.com/gameTexts`)
+    fetch(`http://localhost:8001/gameTexts`)
     .then((res) => res.json())
     .then(data => {
       episodes.current = data;
       setGameObj(data[level.current]);
     });
     
-    fetch(`https://salty-tor-76776.herokuapp.com/highScores`)
+    fetch(`http://localhost:8001/highScores`)
     .then((res) => res.json())
     .then(leaders => {
       const lastLeader = leaders.sort((a,b)=> b.score - a.score).slice(9);
@@ -103,7 +103,12 @@ export default function Game() {
       } else {
         setUserEntry(e.target.value);
       }
-      index.current = textIndex + 1;  
+      if(gameObj.text.charCodeAt(textIndex + 1) === 10){
+        index.current = textIndex + 3;
+        setUserEntry("");
+      } else {
+        index.current = textIndex + 1;
+      }
     } else {
       saberColor.current = "red";
       setErrors(errors + 1);

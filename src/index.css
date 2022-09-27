@@ -57,8 +57,6 @@ code {
   height: 600px;
   background-color: rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  /* box-shadow: 0 0 3pc #aaa; */
-  border-radius: 10px;
   transform: perspective(500px) rotateX(30deg);
 }
 
@@ -68,6 +66,8 @@ code {
 
 #gameText {
   animation: textCrawl linear 1;
+  white-space: pre-wrap;
+  text-align: justify;
 }
 
 @keyframes textCrawl {
@@ -85,6 +85,10 @@ code {
 .uncompleted {
   color: white;
   position: relative;
+}
+
+.title {
+  text-align: center;
 }
 
 #cursor {
