@@ -50,14 +50,14 @@ export default function Game() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:8001/gameTexts`)
+    fetch(`https://type-sabers-server.herokuapp.com/gameTexts`)
     .then((res) => res.json())
     .then(data => {
       episodes.current = data;
       setGameObj(data[level.current]);
     });
     
-    fetch(`http://localhost:8001/highScores`)
+    fetch(`https://type-sabers-server.herokuapp.com/highScores`)
     .then((res) => res.json())
     .then(leaders => {
       const lastLeader = leaders.sort((a,b)=> b.score - a.score).slice(9);

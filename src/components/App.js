@@ -11,7 +11,7 @@ export default function App() {
   const [jedis, setJedis] = useState([]);
 
   useEffect(()=>{
-    fetch("http://localhost:8001/highScores")
+    fetch("https://type-sabers-server.herokuapp.com/highScores")
     .then(r=>r.json())
     .then(setJedis)
   }, []);
